@@ -1,6 +1,9 @@
 package com.example.wongnai_bitcoin.DModel.Adapter;
 
 import android.content.Context;
+import android.graphics.drawable.PictureDrawable;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,16 +11,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.util.Preconditions;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.wongnai_bitcoin.DModel.URLoader.GlideApp;
-import com.example.wongnai_bitcoin.DModel.POJO.coin;
-import com.example.wongnai_bitcoin.R;
-import com.squareup.picasso.Picasso;
 
+import com.example.wongnai_bitcoin.DModel.POJO.coin;
+import com.example.wongnai_bitcoin.DModel.URLoader.GlideApp;
+import com.example.wongnai_bitcoin.DModel.URLoader.GlideRequests;
+import com.example.wongnai_bitcoin.R;
+
+
+import java.io.File;
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private Context mContext;
@@ -56,7 +67,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
 
 
-        GlideApp.with(mContext).load(mCoins.get(position).getIconUrl()).apply(new RequestOptions().override(80,80)).into(holder.image);
+        //GlideApp.with(mContext).load(mCoins.get(position).getIconUrl()).apply(new RequestOptions().override(80,80)).into(holder.image);
+        GlideApp.with(mContext).load(mCoins.get(position).getIconUrl()).apply(new RequestOptions().override(50,50)).into(holder.image);
 
 
     }

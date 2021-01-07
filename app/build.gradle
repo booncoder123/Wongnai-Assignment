@@ -31,6 +31,8 @@ dependencies {
     implementation 'com.facebook.fresco:fresco:2.3.0'
     implementation "com.squareup.okhttp3:okhttp:3.10.0"
     implementation "com.pixplicity.sharp:library:1.1.0"
+
+    implementation 'com.github.qoqa:glide-svg:2.0.4'
 }
 dependencies {
 
@@ -39,6 +41,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     implementation 'com.kirich1409.svgplugin:glide4:1.0.0'
+    //implementation("io.coil-kt:coil:1.1.0")implementation("io.coil-kt:coil:1.1.0")
 
 
 }
@@ -47,7 +50,7 @@ dependencies {
     // For control over item selection of both touch and mouse driven selection
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc03"
 
-    implementation 'com.squareup.picasso:picasso:2.71828'
+
 }
 
 dependencies {
