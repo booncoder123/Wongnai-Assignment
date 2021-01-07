@@ -315,8 +315,8 @@ Retrofit retrofit = new Retrofit.Builder().baseUrl("https://api.coinranking.com/
 }
 ```
  ## Adapter เเละ Recycleview
-```
-java
+ 
+```java
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private Context mContext;
     private List<coin> mCoins;
