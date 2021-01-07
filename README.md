@@ -2,7 +2,6 @@
 
 - โครงสร้างเเอพ
 - เครื่องมือ
-- สรุปการเรียนรู้
 ---
 
 ### โครงสร้างเเอพ
@@ -382,7 +381,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 }
 ```
                     
-                    
+
+
+
                     
                     
                     

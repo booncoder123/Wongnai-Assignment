@@ -68,7 +68,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
 
         //GlideApp.with(mContext).load(mCoins.get(position).getIconUrl()).apply(new RequestOptions().override(80,80)).into(holder.image);
-        GlideApp.with(mContext).load(mCoins.get(position).getIconUrl()).apply(new RequestOptions().override(50,50)).into(holder.image);
+        GlideApp.with(mContext).load(mCoins.get(position).getIconUrl()).apply(new RequestOptions().override(100,100)).into(holder.image);
 
 
 
