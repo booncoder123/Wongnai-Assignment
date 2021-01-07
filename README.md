@@ -25,8 +25,7 @@
  #### 3 Main Interfaces (โดยผมจะอธิบายหน้าที่ของเเต่ละ method ภายหลังในส่วนนี้จะเป็นการอธิบายโครงสร้างของมันก่อน)
  Abstract Class or Interface 
  
- 
-java
+``` java
  public interface IModel {
   
   // empty space for implementation
@@ -44,11 +43,13 @@ public interface IController {
 // empty space for implementation
 
 }
+```
  
 
  
  #### View(Concrete Class)
-java
+ 
+ ```java
 public class MainActivity extends AppCompatActivity implements IView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +75,11 @@ public class Controller implements IController{
      
 
 }
+```
 
  #### Model(Concrete Class)
  
-java
+```java
  public class Model  implements IModel{
     //Database
     private  List<coin> objects;
@@ -89,12 +91,13 @@ java
          }
      
 }
+```
 ## View
 จากโครงสร้างด้านบนจะสังเกตได้ว่าผมให้MainActivityเป็นclassที่ implement View Interface ซึ่งหมายความว่าผมให้ MainActivity นี้ทำหน้าที่เป็น View นั้นเองคอยนำเสนอให้กับลูกค้า
 เเละยังมีหน้าที่รับหรือส่งข้อมูลหรือความต้องการของลูกค้าให้กับControllerอีกด้วย ทีนี้ถึงเวลาลงลึกmethodsที่ผมสร้างขึ้นหรือทางAndroidที่เตรียมให้มา
 
  
-Java
+```java
  public class MainActivity extends AppCompatActivity implements IView {
     private RecyclerView recyclerView;
     private IController controller;
@@ -116,6 +119,7 @@ Java
        
     }
 }
+```
 ### implement(A)
 ในส่วนนี้สิ่งที่เราต้องทำคือทำการ initlize 2 ส่วนหลักประกอบไปด้วย
 - UI
@@ -123,11 +127,13 @@ Java
 
 #### UI
 ฟังชั่นพื้นฐานเลยที่developerทุกต้องรู้คือ findViewById() มันจะbinding กับcomponentต่างๆที่อยู่บนUIไม่ว่าจะเป็นการ binding ปุ่มกด inserting ภาพต่างๆ
-java
+```java
 View view = findViewById(idขอUIที่เราตั้งไว้ในXML)
+```
 
-ตัวอย่างของ XML 
-XML
+ตัวอย่างของ XML
+
+```XML
 <androidx.recyclerview.widget.RecyclerView
         //นี้เลย id
         android:id="@+id/Relist"
@@ -138,6 +144,7 @@ XML
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+```
 #### Class Relationship
 ตามที่เราวางเเผนไว้ใน design pattern เเบบ MVC Class view จะต้องมีความสัมพันธ์เเบบ Has-A กับ Controller
 โดยวิธีการง่ายมากโดยการสร้างInstance ขึ้นมาโดยใช้ keyword new
@@ -154,8 +161,7 @@ controller = new Controller(this);
 
 ## Controller
 Controller เปรียบเสมือนตัวกลางทำหน้าที่คล้ายกับLineman หลักๆคือรับเเละส่งข้อมูลในส่วน controller ย้ำว่าไม่ควรมีการเเตะกับข้อมูลโดยตรงเพราะเป็นหน้าที่ของModelเค้า
-
-java
+```java
 public class Controller implements IController{
     //ความสัมพันธ์เเบบ Has-A Controller - View
     static IView view;
@@ -181,12 +187,13 @@ public class Controller implements IController{
         view.ShowDataOnRecycleView();
     }
 }
+```
  จะเห็นได้ว่าส่วนนี้มีความสัมพันธืค่อนข้างเยอะมาก เพราะอย่างที่ผมบอกมันเป็นตัวกลางระหว่าง Model กับ View
  
  ## Model
  ในที่สุดก็มาถึงClassที่มีความสำคัญมากที่สุดหน้าที่สำคัญของมันคือการเชื่อมAPIเเละนำข้อมูลเหล่านั้นมาประมวลตามความต้องการของ user ยกตัวอย่างเช่น
  
-python
+```python
  //ยกตัวอย่างเป็น python เพราะสั้นเเละเข้าใจง่าย
  Class Model:
    def __init__(self):
@@ -196,6 +203,7 @@ python
     for i in IntegerSet:
      self.sumsum += i
     return self.sumsum 
+    ```
 
  
 
@@ -203,7 +211,7 @@ python
  ถ้าเรามี List ของ Integer เราต้องการที่จะรู้ผลรวมของตัวเลขใน List class นี้ก็เป็นหน้าที่ของเค้า 
  
  
-java
+```java
    public class Model  implements IModel{
      private Retrofit retrofit;
      private API api;
@@ -253,7 +261,7 @@ java
     }
 
 }
- 
+ ```
  
 
  ---
@@ -280,16 +288,31 @@ Retrofit retrofit = new Retrofit.Builder().baseUrl("https://api.coinranking.com/
                 call.enqueue(new Callback<Data>() {
                 //OnRespones จะ invoke ก็ต่อเมื่อข้อมูลนั้นมีอยู่จริง
                     @Override
-                    public void onResponse(Call<Data> call, Response<Data> resp
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+                    public void onResponse(Call<Data> call, Response<Data> response) {
+                        coins = response.body().getData().getCoins();
+                        if(response.isSuccessful()){
+                                setCoins(coins);
+                                controller.UiInvoke();
+                            }
+                        }
+
+                    @Override
+                    public void onFailure(Call<Data> call, Throwable t) {
+                        System.out.println("Error");
+                    }
+                });
+
+    }
+    private void setCoins(List<coin> data) {
+        coins = data;
+    }
+    @Override
+    public List<coin> getCoins() {
+        return coins;
+    }
+
+}
+```
                     
                     
                     
