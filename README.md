@@ -274,7 +274,7 @@ public class Controller implements IController{
  ข้อมูลเหล่านั้นไปเป็นก้อน object เพื่อให้ง่ายต่อการนำไปใช้กับJava ซึ่งในส่วนนี้มีความคล้ายคลึงกับการเเปลงข้อมูลในบทต่อไปที่กำลังมาถึงใน RecycleView and Adapter เเต่ก่อนอื่นเรามาเรียนรู้วิธีใช้เจ้าตัว retrofit ก่อนเลย
  
 ```java
-//ติดต่อกับ BaseURL เเละ GsonConverterFactory ใช้ในการเเปลงข้อมูลที่ได้รับมาในรูปเเบบ jason ให้เป็น POJO รูปเเบบ class ที่มีชื่อตัวเเปรเหมือนกับ Json รวมทั้งฟังชั่น getter&setter
+//BaseURL เเละ GsonConverterFactory ใช้ในการเเปลงข้อมูลที่ได้รับมาในรูปเเบบ jason ให้เป็น POJO รูปเเบบ class ที่มีชื่อตัวเเปรเหมือนกับ Json รวมทั้งฟังชั่น getter&setter
 Retrofit retrofit = new Retrofit.Builder().baseUrl("https://api.coinranking.com/%22)  
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
@@ -303,6 +303,7 @@ Retrofit retrofit = new Retrofit.Builder().baseUrl("https://api.coinranking.com/
                 });
 
     }
+    //Setter and getter ปกติ
     private void setCoins(List<coin> data) {
         coins = data;
     }
